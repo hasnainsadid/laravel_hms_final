@@ -91,4 +91,32 @@ class AppointmentController extends Controller
         $data->update();
         return redirect()->back();
     }
+
+    // doctor appointment show //
+    public function doc_appointment()
+    {
+        $doctor_id = Auth::guard('doctor')->user()->id;
+        $appointment = Appointment::where('doc_id', $doctor_id)->get();
+        return view('backend.doctorLogin.appointments.index', compact('appointment'));
+    }
+
+    // patient appointment //
+    public function patientAppointment()
+    {
+        $patient = Auth::guard('patient')->user()->id;
+        $appointment = Appointment::where('p_id', $patient)->get();
+        return view('backend.patientLogin.appointment.index', compact('appointment'));
+    }
+
+    public function patientNewAppointment(Request $request)
+    {
+        $data = [
+            'p_id'=> Auth::guard('patient')->user()->id,
+            'doc_id' => $request->doctor,
+            'reason' => $request->reason,
+            'date' => $request->date
+        ];
+        Appointment::create($data);
+        return redirect()->route('patient.appointment')->with('msg', 'Appointment request sent');
+    }
 }

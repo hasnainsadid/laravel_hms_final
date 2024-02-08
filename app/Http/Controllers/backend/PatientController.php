@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admission;
+use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Treatment;
@@ -134,6 +135,14 @@ class PatientController extends Controller
 
             return redirect()->route('patient.login')->with('msgs', 'Registration Successful. Please Login');
         }
+    }
+
+    public function doc_patient_all()
+    {
+        $doctorId = Auth::guard('doctor')->user()->id;
+        $data['patients'] = Appointment::where('doc_id', $doctorId)->get();
+        $data['admission'] = Admission::all();
+        return view('backend.doctorLogin.patient.index', $data);
     }
     
     public function logout()
