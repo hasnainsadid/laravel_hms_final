@@ -41,7 +41,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($prescription as $key=>$item)
+                  @forelse ($prescription as $key=>$item)
                     <tr>
                       <td style="width: 1.3rem;">{{++$key}}</td>
                       <td>{{$item->patient->name}}</td>
@@ -49,9 +49,10 @@
                       <td>{{$item->medicine}}</td>
                       <td>{{$item->dose}}</td>
                       <td>{{$item->days}} days</td>
-                      
                     </tr>
-                  @endforeach
+                    @empty
+                    <h2 class="bg-danger p-2">No data found</h2>
+                  @endforelse
                 </tbody>
               </table>
             </div>
