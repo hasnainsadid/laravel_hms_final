@@ -31,8 +31,9 @@ class PrescriptionController extends Controller
     public function doctor_prescription_submit()
     {
         $patient = Patient::all();
+        $medicine = Medicine::all();
         $appointment = Appointment::where('doc_id', Auth::guard('doctor')->user()->id)->get();
-        return view('backend.doctorLogin.prescription.create', compact('patient', 'appointment'));
+        return view('backend.doctorLogin.prescription.create', compact('patient', 'appointment', 'medicine'));
     }
 
     public function prescription_store(Request $request)

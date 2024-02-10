@@ -42,18 +42,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($prescription as $key=>$item)
+                  @forelse ($prescription as $key=>$item)
                     <tr>
-                      <td style="width: 1.3rem;">{{++$key}}</td>
+                      <td style="width: 1.3rem;">{{$loop->iterate}}</td>
                       <td>{{$item->doctor->name}}</td>
                       <td>{{\Carbon\Carbon::parse($item->date)->format('d M, Y')}}</td>
                       <td>{{$item->patient->name}}</td>
                       <td>{{$item->medicine}}</td>
                       <td>{{$item->dose}}</td>
                       <td>{{$item->days}} days</td>
-                      
                     </tr>
-                  @endforeach
+                  @empty
+                  <h3 class="bg-danger p-2">No data Entry</h3>
+                  @endforelse
                 </tbody>
               </table>
             </div>

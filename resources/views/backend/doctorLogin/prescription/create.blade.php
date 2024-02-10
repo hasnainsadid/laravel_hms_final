@@ -55,30 +55,25 @@
                       <th>Medicine</th>
                       <th>Dose</th>
                       <th>Days</th>
-                      {{-- <th class="btn btn-success" onclick="BtnAdd()">+</th> --}}
+                      <th class="btn btn-success" onclick="BtnAdd()"><i class="fas fa-plus-circle"></i></th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+                  <tbody id="tbody">
+                    <tr id="trow">
                       <td scope="row">1</td>
+                      {{-- <td>
+                        <select name="medicine[]" class="form-control">
+                          <option disabled selected>Select Medicine</option>
+                          @foreach ($medicine as $item)
+                              <option value="{{$item->id}}">{{$item->name}}</option>
+                          @endforeach
+                        </select>
+                      </td> --}}
                       <td><input type="text" name="medicine[]" class="form-control"></td>
                       <td><input type="text" name="dose[]" class="form-control"></td>
                       <td><input type="text" name="days[]" class="form-control"></td>
                       {{-- <td><button class="btn btn-outline-danger" onclick="BtnDlt(this)"><i class="fas fa-trash text-danger"></i></button></td> --}}
                     </tr>
-                    <tr>
-                      <td scope="row">2</td>
-                      <td><input type="text" name="medicine[]" class="form-control"></td>
-                      <td><input type="text" name="dose[]" class="form-control"></td>
-                      <td><input type="text" name="days[]" class="form-control"></td>
-                    </tr>
-                    <tr>
-                      <td scope="row">3</td>
-                      <td><input type="text" name="medicine[]" class="form-control"></td>
-                      <td><input type="text" name="dose[]" class="form-control"></td>
-                      <td><input type="text" name="days[]" class="form-control"></td>
-                    </tr>
-                    
                   </tbody>
                 </table>
                 <button type="submit" class="btn btn-success my-5 d-block w-25" >Submit</button>
