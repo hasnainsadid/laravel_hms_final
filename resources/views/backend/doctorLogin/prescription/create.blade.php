@@ -61,15 +61,15 @@
                   <tbody id="tbody">
                     <tr id="trow">
                       <td scope="row">1</td>
-                      {{-- <td>
+                      <td>
                         <select name="medicine[]" class="form-control">
                           <option disabled selected>Select Medicine</option>
                           @foreach ($medicine as $item)
                               <option value="{{$item->id}}">{{$item->name}}</option>
                           @endforeach
                         </select>
-                      </td> --}}
-                      <td><input type="text" name="medicine[]" class="form-control"></td>
+                      </td>
+                      {{-- <td><input type="text" name="medicine[]" class="form-control"></td> --}}
                       <td><input type="text" name="dose[]" class="form-control"></td>
                       <td><input type="text" name="days[]" class="form-control"></td>
                       {{-- <td><button class="btn btn-outline-danger" onclick="BtnDlt(this)"><i class="fas fa-trash text-danger"></i></button></td> --}}
@@ -89,4 +89,23 @@
   </section>
 </div>
 
+@endsection
+
+@section('script')
+<script>
+  $(document).ready(function() {
+    var addButton = $('.btn-success');
+    var wrapper = $('#dynamic_field');
+    var x = 1;
+    $(addButton).click(function() {
+      x++;
+      $(wrapper).append('<tr><td>' + x + '</td><td><select name="medicine[]" class="form-control"><option disabled selected>Select Medicine</option>@foreach ($medicine as $item)<option value="{{$item->id}}">{{$item->name}}</option>@endforeach</select></td><td><input type="text" name="dose[]" class="form-control"></td><td><input type="text" name="days[]" class="form-control"></td><td><button class="btn btn-outline-danger remove_field"><i class="fas fa-trash text-danger"></i></button></td></tr>'); // add new row
+    });
+    $(wrapper).on('click', '.remove_field', function(e) {
+      e.preventDefault();
+      $(this).parent().parent().remove(); // remove row
+      x--;
+    });
+  });
+</script>
 @endsection

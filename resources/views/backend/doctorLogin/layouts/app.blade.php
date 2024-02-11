@@ -40,27 +40,12 @@
   </aside>
   <!-- /.control-sidebar -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function() {
-    var addButton = $('.btn-success');
-    var wrapper = $('#dynamic_field');
-    var x = 1;
-    $(addButton).click(function() {
-      x++;
-      $(wrapper).append('<tr><td>' + x + '</td><td><input type="text" name="medicine[]" class="form-control"></td><td><input type="text" name="dose[]" class="form-control"></td><td><input type="text" name="days[]" class="form-control"></td><td><button class="btn btn-outline-danger remove_field"><i class="fas fa-trash text-danger"></i></button></td></tr>'); // add new row
-    });
-    $(wrapper).on('click', '.remove_field', function(e) {
-      e.preventDefault();
-      $(this).parent().parent().remove(); // remove row
-      x--;
-    });
-  });
-</script>
+
   <!-- Main Footer -->
   @include('backend.doctorLogin.layouts.footer')
 </div>
 <!-- ./wrapper -->
-
+@yield('script')
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
