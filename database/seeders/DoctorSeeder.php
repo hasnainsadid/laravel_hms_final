@@ -27,7 +27,7 @@ class DoctorSeeder extends Seeder
         DB::table('doctor')->insert([
             'name'=>'Dr. Mehenaz Tabassum',
             'designation'=>'Professor',
-            'email'=>'nasrin@gmail.com',
+            'email'=>'mehnaz@gmail.com',
             'password'=>Hash::make('doctor123'),
             'phone'=>'01911364781',
             'img'=>'1706772645.jpg',
