@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
+use App\Models\Billing;
+use App\Models\Medicine;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 
 class BillingController extends Controller
@@ -14,10 +18,19 @@ class BillingController extends Controller
 
     public function admin_billing()
     {
-        return view('backend.adminLogin.billing.index');
+        $billing = Billing::all();
+        return view('backend.adminLogin.billing.index', compact('billing'));
     }
     public function admin_billing_add()
     {
-        return view('backend.adminLogin.billing.add_billing');
+        $medicine = Medicine::all();
+        $seat = Seat::all();
+        $appointment = Appointment::all();
+        return view('backend.adminLogin.billing.add_billing', compact('medicine', 'seat', 'appointment'));
+    }
+    public function store(Request $request){
+        // dd($request->all());
+        Billing::create($request->all());
+        return redirect()->back();
     }
 }

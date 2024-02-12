@@ -41,16 +41,6 @@ class PrescriptionController extends Controller
         $medicine = json_encode($request->medicine);
         $dose = json_encode($request->dose);
         $days = json_encode($request->days);
-        // $instruction = [];
-        // $medicine = $request->medicine;
-        // $dose = $request->dose;
-        // $days = $request->days;
-        
-        // for($i=0; $i<count($medicine); $i++){
-        //     $instruction[0] = $medicine;
-        //     $instruction[1] = $dose;
-        //     $instruction[2] = $days;
-        // }    
 
         $data = [
             'p_id' => $request->p_id,
@@ -59,13 +49,13 @@ class PrescriptionController extends Controller
             'medicine' => $medicine,
             'dose' => $dose,
             'days' => $days,
-        ];
-        // echo '<pre>';
-        // print_r($instruction);
+        ];        
         
-        
-        // dd($data);
-        Prescription::create($data);
-        return back()->with('msg', 'Added Prescription');
+        echo '<pre>';
+        print_r($data);
+        '</pre>';
+        // dd($request->medicine);
+        // Prescription::create($data);
+        // return back()->with('msg', 'Added Prescription');
     }
 }

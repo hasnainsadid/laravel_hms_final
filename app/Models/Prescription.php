@@ -17,16 +17,21 @@ class Prescription extends Model
     public function patient() : BelongsTo {
         return $this->belongsTo(Patient::class, 'p_id');
     }
+    protected $casts =[
+        'medicine'=>'array',
+        'dose'=>'array',
+        'days'=>'array',
+    ];
 
-    public function setPrescriptionAttribute($value)
-    {
-        $this->attributes['medicine'] = json_encode($value);
-        $this->attributes['dose'] = json_encode($value);
-        $this->attributes['days'] = json_encode($value);
-    }
-    public function getPrescriptionAttribute($value)
-    {
-        return is_array($value) ? $value : json_decode($value, true);
-        // return $this->attributes['medicine'] =
-    }
+    // public function setPrescriptionAttribute($value)
+    // {
+    //     $this->attributes['medicine'] = json_encode($value);
+    //     $this->attributes['dose'] = json_encode($value);
+    //     $this->attributes['days'] = json_encode($value);
+    // }
+    // public function getPrescriptionAttribute($value)
+    // {
+    //     return is_array($value) ? $value : json_decode($value, true);
+    //     return $this->attributes['medicine'] =
+    // }
 }

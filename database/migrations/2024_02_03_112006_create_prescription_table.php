@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('p_id');
             $table->tinyInteger('d_id');
-            $table->string('medicine', 50);
-            $table->string('dose', 20);
-            $table->string('days', 15);
+            $table->json('medicine');
+            $table->json('dose');
+            $table->json('days');
             $table->date('date', 15);
-            $table->timestamp('craeted_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
     }

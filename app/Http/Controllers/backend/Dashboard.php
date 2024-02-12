@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Appointment;
+use App\Models\Billing;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Patient;
@@ -23,6 +24,7 @@ class Dashboard extends Controller
         $data['department'] = Department::count();
         $data['admin'] = Admin::count();
         $data['seat'] = Seat::count();
+        $data['income'] = Billing::sum('grand_total');
         return view('backend.home', $data);
     }
 

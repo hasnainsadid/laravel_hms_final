@@ -69,10 +69,8 @@
                           @endforeach
                         </select>
                       </td>
-                      {{-- <td><input type="text" name="medicine[]" class="form-control"></td> --}}
                       <td><input type="text" name="dose[]" class="form-control"></td>
                       <td><input type="text" name="days[]" class="form-control"></td>
-                      {{-- <td><button class="btn btn-outline-danger" onclick="BtnDlt(this)"><i class="fas fa-trash text-danger"></i></button></td> --}}
                     </tr>
                   </tbody>
                 </table>

@@ -36,26 +36,20 @@
                   <tr>
                     <th>#</th>
                     <th>Patient Name</th>
-                    <th>Items</th>
+                    <th>Date</th>
                     <th>Total Amout</th>
-                    <th>Status</th>
+                    {{-- <th>Status</th> --}}
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($billing as $item)
                   <tr>
-                    <td>1</td>
-                    <td>napa</td>
-                    <td>2</td>
-                    <td>20</td>
-                    <td>40</td>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$item->patient->name}}</td>
+                    <td>{{$item->date}}</td>
+                    <td>{{$item->grand_total}}</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>napa</td>
-                    <td>2</td>
-                    <td>20</td>
-                    <td>40</td>
-                  </tr>
+                  @endforeach
                 </tbody>
               </table>
               

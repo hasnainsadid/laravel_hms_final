@@ -25,11 +25,19 @@
       <div class="row">
         <div class="col-12">
           <div class="card p-4">
+            <form action="{{route('billing.store')}}" method="post">
+            @csrf
             <div class="card-head">
               <div class="row">
                 <div class="col-md-4">
-                  Name: <input type="text" name="name" value="patient name" class="form-control">
-                  Date: <input type="date" class="form-control">
+                  Name: <select name="p_id" class="form-control">
+                    <option>Select Patient</option>
+                    @foreach ($appointment as $item)
+                        <option value="{{$item->p_id}}">{{$item->patient->name}}</option>
+                    @endforeach
+                  </select>
+
+                  Date: <input type="date" name="date" class="form-control">
                 </div>
               </div>
             </div>
@@ -41,16 +49,22 @@
                     <tr class="item-row">
                         <th>Item</th>
                         <th>Price</th>
-                        <th>Quantity</th>
+                        <th>Quantity/Days</th>
                         <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                 <!-- Here should be the item row -->
                 <tr class="item-row">
-                    <td><input class="form-control item" placeholder="Item" type="text"></td>
+                    <td>
+                        <select name="item" class="form-control">
+                            <option value="">Select Seat</option>    
+                        @foreach ($seat as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                        </select></td>
                     <td><input class="form-control price" placeholder="Price" type="text"></td>
-                    <td><input class="form-control qty" placeholder="Quantity" type="text"></td>
+                    <td><input class="form-control qty" placeholder="Days" type="text"></td>
                     <td><span class="total">0.00</span></td>
                 </tr>
                 <tr id="hiderow">
@@ -74,20 +88,18 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td class="text-right"><strong>Shipping</strong></td>
-                    <td><input class="form-control" id="shipping" value="0" type="text"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
                     <td class="text-right"><strong>Grand Total</strong></td>
-                    <td><span id="grandTotal">0</span></td>
+                    <td><textarea style="background-color: transparent; width: 100%; color: #fff; height:37px; padding: 1px 3px" id="grandTotal" name="grand_total">0</textarea></td>
                 </tr>
                 </tbody>
+                
             </table>
+            <tfoot>
+                <button type="submit" class="btn btn-primary my-4">Submit</button>
+            </tfoot> 
             </div>
+            </form>
           </div>
-          
         </div>
         <!-- /.col -->
       </div>
@@ -209,16 +221,22 @@
      *
      * @returns {number}
      */
-    calcGrandTotal: function () {
-        var grandTotal = Number(jQuery($.opt.subtotal).html())
-                    + Number(jQuery($.opt.shipping).val())
-                    - Number(jQuery($.opt.discount).val());
-        grandTotal = self.roundNumber(grandTotal, 2);
+     calcGrandTotal: function () {
+    var subtotal = Number(jQuery($.opt.subtotal).html());
+    var discountPercentage = Number(jQuery($.opt.discount).val());
+    
+    // Calculate the discount amount
+    var discountAmount = (subtotal * discountPercentage) / 100;
 
-        jQuery($.opt.grandTotal).html(grandTotal);
-
-        return 1;
-    },
+    // Calculate the grand total after applying the discount
+    var grandTotal = subtotal - discountAmount;
+    
+    grandTotal = self.roundNumber(grandTotal, 2);
+    
+    jQuery($.opt.grandTotal).html(grandTotal);
+    
+    return 1;
+},
 
     /**
      * Add a row.
@@ -226,7 +244,7 @@
      * @returns {number}
      */
     newRow: function () {
-        jQuery(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-btn"><input type="text" class="form-control item" placeholder="Item" type="text"><a class=' + $.opt.delete.substring(1) + ' href="javascript:;" title="Remove row">X</a></div></td><td><input class="form-control price" placeholder="Price" type="text"> </td><td><input class="form-control qty" placeholder="Quantity" type="text"></td><td><span class="total">0.00</span></td></tr>');
+        jQuery(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-btn"><select name="item" class="form-control"><option value="">Select One</option>@foreach ($medicine as $item)<option value="{{$item->id}}">{{$item->name}}</option>@endforeach</select><a class=' + $.opt.delete.substring(1) + ' href="javascript:;" title="Remove row">X</a></div></td><td><input class="form-control price" placeholder="Price" type="text"> </td><td><input class="form-control qty" placeholder="Quantity" type="text"></td><td><span class="total">0.00</span></td></tr>');
 
         if (jQuery($.opt.delete).length > 0) {
             jQuery($.opt.delete).show();
