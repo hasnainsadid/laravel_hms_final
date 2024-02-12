@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                   @php($i = 1)
-                  @foreach ($patients as $item)
+                  @forelse ($patients as $item)
                   @php($admit = $admission->where('p_id', $item->id)->where('release_date', NULL)->first())
                   <tr>
                     <td style="width: 1.3rem;">{{$i++}}</td>
@@ -54,19 +54,9 @@
                     <td>{{$item->patient->gender}}</td>
                     <td>{{$item->patient->blood_grp}}</td>
                     <td>{{$admit ? 'Indoor' : 'Outdoor'}}</td>
-                    {{-- <td>
-                      @if (!$admit)
-                        <form action="{{route('admission.admit_form')}}" method="post" class="d-inline">
-                          @csrf
-                          <input type="hidden" name="p_id" value="{{$item->id}}">
-                          <button type="submit" class="btn btn-success">Admit</button>
-                        @else
-                        <button type="submit" disabled class="btn btn-success">Admit</button>
-                        </form>
-                      @endif
-                    </td> --}}
                   </tr>
-                  @endforeach
+                  @empty <h4 class="bg-danger p-2">No Patient</h4>
+                  @endforelse
                 </tbody>
               </table>
             </div>

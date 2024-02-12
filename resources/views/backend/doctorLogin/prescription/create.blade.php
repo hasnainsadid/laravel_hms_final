@@ -24,11 +24,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
+          <form action="{{route('doctor.prescription.store')}}" method="post">
           <div class="card p-4">
             <div class="card-head">
               <div class="row">
                 <div class="col-md-8">
-                  <form action="{{route('doctor.prescription.store')}}" method="post">
                     @csrf
                     Name: 
                     <select name="p_id" class="form-control">
@@ -75,9 +75,9 @@
                   </tbody>
                 </table>
                 <button type="submit" class="btn btn-success my-5 d-block w-25" >Submit</button>
-              </form>  
+              </div>
             </div>
-          </div>
+          </form>  
         </div>
         <!-- /.col -->
       </div>

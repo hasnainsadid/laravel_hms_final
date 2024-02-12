@@ -40,7 +40,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($appointment as $key=>$item)
+                  @forelse ($appointment as $key=>$item)
                     <tr>
                       <td style="width: 1.3rem;">{{++$key}}</td>
                       <td>{{$item->doctor->name}}</td>
@@ -48,7 +48,9 @@
                       <td>{{$item->reason}}</td>
                       <td style="background-color: {{$item->status == 0 ? '#A52A2A' : '#00ff00'}}; color: {{$item->status == 0 ? '#fff' : '#000'}}">{{$item->status == 1 ? 'Approved' : 'Pending'}}</td>
                     </tr>
-                  @endforeach
+                    @empty
+                    <h4 class="bg-danger p-2">No Appointment Yet</h4>
+                  @endforelse
                 </tbody>
               </table>
             </div>

@@ -29,7 +29,7 @@
               @if (session('msg'))
                   <div class="alert alert-success">{{session('msg')}}</div>
               @endif
-              @foreach ($prescription as $key=>$item)
+              @forelse ($prescription as $key=>$item)
               <div class="card mb-3">
                 <div class="card-head p-4" style="display: flex; aline-item:center; justify-content: space-between">
                   <h4><u>Date:</u> {{ \Carbon\Carbon::parse($item->date)->format('d M, Y') }}</h4>
@@ -80,7 +80,8 @@
                   </table>
                 </div>
               </div>
-              @endforeach
+              @empty <h4 class="bg-danger p-2">No Prescription</h4>
+              @endforelse
             </div>
             <!-- /.card-body -->
           </div>
