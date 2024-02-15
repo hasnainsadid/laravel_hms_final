@@ -42,7 +42,7 @@
                   <table id="example2" class="table table-hover text-center">
                     <thead>
                       <tr>
-                        <th>SL. No</th>
+                        {{-- <th>SL. No</th> --}}
                         <th>Medicine Name</th>
                         <th>Details</th>
                         <th>Days</th>
@@ -50,29 +50,27 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>{{++$key}}</td>
+                        {{-- <td>{{++$key}}</td> --}}
                         <td>
                           <ol>
-                            {{-- @foreach ($item->medicine as $medicine)
-                              <li>{{$medicine ?? ''}}</li>
+                            {{implode(', ' , $item->m_id)}}
+                            {{-- @foreach ($item->m_id as $medi)
+                              <li>{{ $medi ?? ''}}</li>
                             @endforeach --}}
-                            {{$item->medicine}}
                           </ol>
                         </td>
                         <td>
-                          <ol>
-                            {{-- @foreach ($item->dose as $dose)
-                              <li>{{$dose ?? ''}}</li>
-                            @endforeach --}}
-                            {{$item->dose}}
+                          <ol style="list-style-type: none">
+                            @foreach ($item->dose as $dose)
+                              <li>{{$dose}}</li>
+                            @endforeach
                           </ol>
                         </td>
                         <td>
-                          <ol>
-                            {{-- @foreach ($item->days as $day)
+                          <ol style="list-style-type: none">
+                            @foreach ($item->days as $day)
                               <li>{{$day ?? ''}}</li>
-                            @endforeach --}}
-                            {{$item->days}}
+                            @endforeach
                           </ol>
                         </td>
                       </tr>

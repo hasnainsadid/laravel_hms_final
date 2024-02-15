@@ -20,6 +20,9 @@ class PrescriptionController extends Controller
     public function patient_prescription()
     {
         $prescription = Prescription::where('p_id', Auth::guard('patient')->user()->id)->get();
+        // dd($prescription);
+        // echo '<pre>';
+        // print_r($prescription);
         return view('backend.patientLogin.prescription.index', compact('prescription'));
     }
     public function doctor_prescription()
@@ -37,25 +40,23 @@ class PrescriptionController extends Controller
     }
 
     public function prescription_store(Request $request)
-    {
-        $medicine = json_encode($request->medicine);
-        $dose = json_encode($request->dose);
-        $days = json_encode($request->days);
+{
+    // Filter out null values from the arrays
+    // $medicine = json_encode(array_filter($request->medicine));
+    // $dose = json_encode(array_filter($request->dose));
+    // $days = json_encode(array_filter($request->days));
 
-        $data = [
-            'p_id' => $request->p_id,
-            'd_id' => Auth::guard('doctor')->user()->id,
-            'date'=> $request->date,
-            'medicine' => $medicine,
-            'dose' => $dose,
-            'days' => $days,
-        ];        
-        
-        echo '<pre>';
-        print_r($data);
-        '</pre>';
-        // dd($request->medicine);
-        // Prescription::create($data);
-        // return back()->with('msg', 'Added Prescription');
-    }
+    $data = [
+        'p_id' => $request->p_id,
+        'd_id' => Auth::guard('doctor')->user()->id,
+        'date' => $request->date,
+        'm_id' => array_filter($request->medicine),
+        'dose' => array_filter($request->dose),
+        'days' => array_filter($request->days),
+    ];
+    // dd($data);
+    Prescription::create($data);
+    return back()->with('msg', 'Added Prescription');
+}
+
 }
