@@ -53,10 +53,10 @@
                         {{-- <td>{{++$key}}</td> --}}
                         <td>
                           <ol>
-                            {{implode(', ' , $item->m_id)}}
-                            {{-- @foreach ($item->m_id as $medi)
+                            {{-- {{implode(', ' , $item->m_id)}} --}}
+                            @foreach ($item->m_id as $medi)
                               <li>{{ $medi ?? ''}}</li>
-                            @endforeach --}}
+                            @endforeach
                           </ol>
                         </td>
                         <td>
