@@ -20,9 +20,6 @@ class Prescription extends Model
     public function patient() : BelongsTo {
         return $this->belongsTo(Patient::class, 'p_id');
     }
-    public function medicine() : BelongsTo {
-        return $this->belongsTo(Medicine::class, 'm_id');
-    }
 
 
     protected $casts = [

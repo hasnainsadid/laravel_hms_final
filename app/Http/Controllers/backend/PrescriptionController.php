@@ -19,10 +19,7 @@ class PrescriptionController extends Controller
     }
     public function patient_prescription()
     {
-        $prescription = Prescription::where('p_id', Auth::guard('patient')->user()->id)->get();
-        // dd($prescription);
-        // echo '<pre>';
-        // print_r($prescription);
+        $prescription = Prescription::where('p_id', Auth::guard('patient')->user()->id)->orderBy('date', 'desc')->get();
         return view('backend.patientLogin.prescription.index', compact('prescription'));
     }
     public function doctor_prescription()

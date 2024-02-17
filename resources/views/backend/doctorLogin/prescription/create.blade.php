@@ -25,6 +25,9 @@
       <div class="row">
         <div class="col-12">
           <div class="card p-4">
+            @if (session('msg'))
+              <div class="alert alert-success">{{session('msg')}}</div>
+            @endif
           <form action="{{route('doctor.prescription.store')}}" method="post">
             <div class="card-head">
               <div class="row">
@@ -65,7 +68,7 @@
                         <select name="medicine[]" class="form-control">
                           <option disabled selected>Select Medicine</option>
                           @foreach ($medicine as $item)
-                              <option value="{{$item->id}}">{{$item->name}}</option>
+                              <option value="{{$item->name}}">{{$item->name}}</option>
                           @endforeach
                         </select>
                       </td>
@@ -97,7 +100,7 @@
     var x = 1;
     $(addButton).click(function() {
       x++;
-      $(wrapper).append('<tr><td>' + x + '</td><td><select name="medicine[]" class="form-control"><option disabled selected>Select Medicine</option>@foreach ($medicine as $item)<option value="{{$item->id}}">{{$item->name}}</option>@endforeach</select></td><td><input type="text" name="dose[]" class="form-control"></td><td><input type="text" name="days[]" class="form-control"></td><td><button class="btn btn-outline-danger remove_field"><i class="fas fa-trash text-danger"></i></button></td></tr>'); // add new row
+      $(wrapper).append('<tr><td>' + x + '</td><td><select name="medicine[]" class="form-control"><option disabled selected>Select Medicine</option>@foreach ($medicine as $item)<option value="{{$item->name}}">{{$item->name}}</option>@endforeach</select></td><td><input type="text" name="dose[]" class="form-control"></td><td><input type="text" name="days[]" class="form-control"></td><td><button class="btn btn-outline-danger remove_field"><i class="fas fa-trash text-danger"></i></button></td></tr>'); // add new row
     });
     $(wrapper).on('click', '.remove_field', function(e) {
       e.preventDefault();
