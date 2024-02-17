@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('p_id');
             $table->tinyInteger('d_id');
-            $table->json('medicine');
+            $table->json('m_id');
             $table->json('dose');
             $table->json('days');
             $table->date('date', 15);
