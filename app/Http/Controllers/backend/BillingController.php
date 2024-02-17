@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Billing;
@@ -32,5 +33,14 @@ class BillingController extends Controller
         // dd($request->all());
         Billing::create($request->all());
         return redirect()->back();
+    }
+ 
+    public function download() {
+        $medicine = Medicine::all();
+        $seat = Seat::all();
+        $appointment = Appointment::all();
+        $pdf = Pdf::loadView('backend.adminLogin.billing.add_billing', compact('medicine', 'appointment', 'seat'));
+    
+        return $pdf->stream();
     }
 }

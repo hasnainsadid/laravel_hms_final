@@ -41,11 +41,6 @@ class PrescriptionController extends Controller
 
     public function prescription_store(Request $request)
 {
-    // Filter out null values from the arrays
-    // $medicine = json_encode(array_filter($request->medicine));
-    // $dose = json_encode(array_filter($request->dose));
-    // $days = json_encode(array_filter($request->days));
-
     $data = [
         'p_id' => $request->p_id,
         'd_id' => Auth::guard('doctor')->user()->id,

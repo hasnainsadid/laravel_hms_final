@@ -101,6 +101,7 @@ Route::group(['middleware'=> 'admin'],function () {
     Route::get('admins/billing', [BillingController::class, 'admin_billing'])->name('admin.billing');
     Route::post('admins/billing/submit', [BillingController::class, 'store'])->name('billing.store');
     Route::get('admins/add_billing', [BillingController::class, 'admin_billing_add'])->name('add.billing');
+    Route::get('admins/download_billing', [BillingController::class, 'download'])->name('download.billing');
 
 
     // Admission //

@@ -53,9 +53,9 @@
                         {{-- <td>{{++$key}}</td> --}}
                         <td>
                           <ol>
-                            {{-- {{implode(', ' , $item->m_id)}} --}}
-                            @foreach ($item->m_id as $medi)
-                              <li>{{ $medi ?? ''}}</li>
+                            {{-- {{implode(', ' , $item->medicine->name)}} --}}
+                            @foreach ($item->m_id as $medic)
+                              <li>{{ $medic }}</li>
                             @endforeach
                           </ol>
                         </td>

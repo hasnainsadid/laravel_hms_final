@@ -38,16 +38,4 @@ class Prescription extends Model
             get: fn ($value) => json_decode($value, true),
         );
     } 
-
-    // public function setPrescriptionAttribute($value)
-    // {
-    //     $this->attributes['medicine'] = json_encode($value);
-    //     $this->attributes['dose'] = json_encode($value);
-    //     $this->attributes['days'] = json_encode($value);
-    // }
-    // public function getPrescriptionAttribute($value)
-    // {
-    //     return is_array($value) ? $value : json_decode($value, true);
-    //     // return $this->attributes['medicine'];
-    // }
 }

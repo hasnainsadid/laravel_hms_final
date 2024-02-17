@@ -42,14 +42,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($billing as $item)
+                  @forelse ($billing as $item)
                   <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item->patient->name}}</td>
                     <td>{{$item->date}}</td>
                     <td>{{$item->grand_total}}</td>
                   </tr>
-                  @endforeach
+                  @empty
+                  <h4 class="p-3 bg-danger">No data found</h4>
+                  @endforelse
                 </tbody>
               </table>
               
